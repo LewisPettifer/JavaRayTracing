@@ -11,6 +11,8 @@ public class Main {
 		System.out.println(test2);
 		Vector3D squareroot = new Vector3D(3.0,4.0,0.0);
 		System.out.println(squareroot.length());
+		
+		
 	}
 
 }
