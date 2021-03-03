@@ -11,9 +11,13 @@ public class Vector3D {
 		z = 0;
 	}
 	
-	public Vector3D(float x, float y, float z) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
+	public Vector3D(double d, double e, double f) {
+		this.x = d;
+		this.y = e;
+		this.z = f;
+	}
+	
+	public String toString() {
+		return "<" + x + ", " + y + ", " + z + ">";
 	}
 }
