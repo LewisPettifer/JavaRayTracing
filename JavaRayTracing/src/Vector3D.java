@@ -1,9 +1,9 @@
 
 public class Vector3D {
 	
-	private float x;
-	private float y;
-	private float z;
+	private double x;
+	private double y;
+	private double z;
 
 	public Vector3D() {
 		x = 0;
@@ -16,5 +16,4 @@ public class Vector3D {
 		this.y = y;
 		this.z = z;
 	}
-	
 }
