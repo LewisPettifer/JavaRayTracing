@@ -9,6 +9,8 @@ public class Main {
 		Vector3D test2 = test;
 		System.out.println(test);
 		System.out.println(test2);
+		Vector3D squareroot = new Vector3D(3.0,4.0,0.0);
+		System.out.println(squareroot.length());
 	}
 
 }

@@ -11,10 +11,14 @@ public class Vector3D {
 		z = 0;
 	}
 	
-	public Vector3D(double d, double e, double f) {
-		this.x = d;
-		this.y = e;
-		this.z = f;
+	public Vector3D(double x, double y, double z) {
+		this.x = x;
+		this.y = y;
+		this.z = z;
+	}
+	
+	public double length() {
+		return Math.sqrt( (x*x) + (y*y) + (z*z));
 	}
 	
 	public String toString() {
