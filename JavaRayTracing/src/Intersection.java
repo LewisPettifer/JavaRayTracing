@@ -14,4 +14,16 @@ public class Intersection {
 		this.t = t;
 	}
 
+	public void setT(double t) {
+		this.t = t;
+	}
+	
+	public Vector3D intersectionPoint() {
+		return ray.calculateT(t);
+	}
+	
+	public Vector3D intersectionPoint(double t) {
+		return ray.calculateT(t);
+	}
+	
 }
