@@ -17,8 +17,12 @@ public class Vector3D {
 		this.z = z;
 	}
 	
+	public double lengthsqrt() {
+		return Math.sqrt((x*x) + (y*y) + (z*z));
+	}
+	
 	public double length() {
-		return Math.sqrt( (x*x) + (y*y) + (z*z));
+		return (x*x) + (y*y) + (z*z);
 	}
 	
 	public Vector3D add(Vector3D vector) {
