@@ -41,8 +41,8 @@ public class Vector3D {
 		return new Vector3D((this.x / f), (this.y / f), (this.z / f));
 	}
 	
-	public double dotProduct(Vector3D v1 , Vector3D v2) {
-		return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+	public double dotProduct(Vector3D v) {
+		return this.x * v.x + this.y * v.y + this.z * v.z;
 	}
 	
 	public Vector3D crossProduct(Vector3D v1 , Vector3D v2) {
