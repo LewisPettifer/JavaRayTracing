@@ -6,7 +6,7 @@ public class Ray {
 	private double tMax = Double.MAX_VALUE;
 	
 	public Ray() {
-		this.setOrigin(new Vector3D(0.0, 0.0, 0.0));
+		this.setOrigin(new Vector3D());
 		this.setDirection(new Vector3D());
 	}
 	
