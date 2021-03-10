@@ -9,6 +9,11 @@ public class Intersection {
 		t = Double.MAX_VALUE;
 	}
 	
+	public Intersection(Ray ray) {
+		this.ray = ray;
+		this.t = ray.gettMax();
+	}
+	
 	public Intersection(Ray ray, double t) {
 		this.ray = ray;
 		this.t = t;
