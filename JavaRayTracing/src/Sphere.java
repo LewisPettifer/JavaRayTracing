@@ -31,11 +31,15 @@ public class Sphere {
 		this.b = b;
 	}
 	
+	private Vector3D getCentre() {
+		return centre;
+	}
+
 	public Boolean intersect(Intersection inter) {
 	
 		//local ray
 		Ray localRay = inter.getRay();
-		localRay.setOrigin(localRay.getOrigin().sub(centre));
+		localRay.setOrigin(localRay.getOrigin().sub(getCentre()));
 		
 		//calculate quad
 		double a = localRay.getDirection().length();
