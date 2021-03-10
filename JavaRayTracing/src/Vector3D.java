@@ -45,10 +45,10 @@ public class Vector3D {
 		return this.x * v.x + this.y * v.y + this.z * v.z;
 	}
 	
-	public Vector3D crossProduct(Vector3D v1 , Vector3D v2) {
-		return new Vector3D(v1.y * v2.z - v1.z * v2.y,
-				v1.z * v2.x - v1.x * v2.z,
-				v1.x * v2.y - v1.y * v2.x);
+	public Vector3D crossProduct(Vector3D v) {
+		return new Vector3D(this.y * v.z - this.z * v.y,
+				this.z * v.x - this.x * v.z,
+				this.x * v.y - this.y * v.x);
 		
 	}
 	
