@@ -31,7 +31,7 @@ public class Sphere {
 		this.b = b;
 	}
 	
-	private Vector3D getCentre() {
+	public Vector3D getCentre() {
 		return centre;
 	}
 

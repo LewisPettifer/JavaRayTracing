@@ -58,9 +58,7 @@ public class Vector3D {
 	}
 	
 	public Vector3D crossProduct(Vector3D v) {
-		return new Vector3D(this.y * v.z - this.z * v.y,
-				this.z * v.x - this.x * v.z,
-				this.x * v.y - this.y * v.x);
+		return new Vector3D((this.y * v.z - this.z * v.y), (this.z * v.x - this.x * v.z), (this.x * v.y - this.y * v.x));
 		
 	}
 	

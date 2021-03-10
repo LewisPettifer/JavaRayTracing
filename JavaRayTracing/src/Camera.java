@@ -10,7 +10,8 @@ public class Camera {
 	
 	public Camera(Vector3D origin, Vector3D target, Vector3D up2, double fov, double aspectRatio) {
 		this.origin = origin;
-		this.right = up2.crossProduct(forward).normalised();
+		this.forward = (target.sub(origin)).normalised();
+		this.right = (forward.crossProduct(up2)).normalised();
 		this.up = right.crossProduct(forward);
 		
 		h = Math.tan(fov);
