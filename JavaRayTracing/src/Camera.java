@@ -17,4 +17,12 @@ public class Camera {
 		w = h * aspectRatio;
 	}
 	
+	public Ray makeRay(Vector3D point2D) {
+		Vector3D rightTemp = right.multi(point2D.getX() * w);
+		Vector3D upTemp = up.multi(point2D.getY() * h);
+		Vector3D direction = forward.add(rightTemp).add(upTemp);
+		
+		return new Ray(origin, direction.normalised());
+	}
+	
 }
