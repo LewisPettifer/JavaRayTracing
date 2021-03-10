@@ -37,6 +37,10 @@ public class Ray {
 		this.direction = direction;
 	}
 
+	public double gettMax() {
+		return tMax;
+	}
+
 	public Vector3D calculateT(double t) {
 		return (getOrigin().add(getDirection())).multi(t);
 	}
