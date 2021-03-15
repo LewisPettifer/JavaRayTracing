@@ -33,6 +33,10 @@ public class Sphere {
 		return centre;
 	}
 
+	public Colour getColour() {
+		return colour;
+	}
+
 	public Boolean intersect(Intersection inter) {
 	
 		//local ray
