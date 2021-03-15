@@ -17,13 +17,13 @@ public class Main {
 		Vector3D squareroot = new Vector3D(3.0,4.0,0.0);
 		System.out.println(squareroot.length());
 		
-		int width = 400;
-		int height = 400;
-		Sphere sphere = new Sphere(new Vector3D(0.0, 1.0, 0.0), 1, 255, 0, 0);
+		int width = 1920;
+		int height = 1080;
+		Sphere sphere = new Sphere(new Vector3D(0.0, 1.0, 0.0), 3, 255, 0, 0);
 		
 		Camera cam = new Camera(new Vector3D(-5.0, 1.0, 0.0), sphere.getCentre(), new Vector3D(0.0, 1.0, 0.0), 25.0 * Math.PI / 180.0, width/height);
 		
-		File output = new File("output.png");
+		File output = new File("output3.png");
 		BufferedImage theImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		
 		for(int i = 0; i < width; i++) {

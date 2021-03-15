@@ -19,7 +19,7 @@ public class Camera {
 	}
 	
 	public Ray makeRay(Vector3D point2D) {
-		Vector3D rightTemp = right.multi(point2D.getX() * w);
+		Vector3D rightTemp = right.multi(point2D.getX() * w / 3);
 		Vector3D upTemp = up.multi(point2D.getY() * h);
 		Vector3D direction = forward.add(rightTemp).add(upTemp);
 		
