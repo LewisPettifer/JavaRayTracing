@@ -36,7 +36,7 @@ public class Sphere extends Shape{
 		return colour;
 	}
 
-	
+	@Override
 	public Boolean intersect(Intersection inter) {
 	
 		//local ray
