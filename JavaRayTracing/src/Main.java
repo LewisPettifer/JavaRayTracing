@@ -19,7 +19,7 @@ public class Main {
 		
 		int width = 1920;
 		int height = 1080;
-		Sphere sphere = new Sphere(new Vector3D(0.0, 1.0, 0.0), 3, 255, 0, 0);
+		Sphere sphere = new Sphere(new Vector3D(0.0, 1.0, 0.0), 3, 255, 150, 150);
 		
 		Camera cam = new Camera(new Vector3D(-5.0, 1.0, 0.0), sphere.getCentre(), new Vector3D(0.0, 1.0, 0.0), 25.0 * Math.PI / 180.0, width/height);
 		

@@ -1,9 +1,8 @@
 
-public class Sphere {
+public class Sphere extends Shape{
 
 	private Vector3D centre;
 	private double radius;
-	private Colour colour;
 	
 	public Sphere() {
 		this.centre = new Vector3D();
@@ -37,6 +36,7 @@ public class Sphere {
 		return colour;
 	}
 
+	
 	public Boolean intersect(Intersection inter) {
 	
 		//local ray
