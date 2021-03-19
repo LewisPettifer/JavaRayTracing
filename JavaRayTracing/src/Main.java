@@ -23,7 +23,9 @@ public class Main {
 		
 		Camera cam = new Camera(new Vector3D(-5.0, 1.0, 0.0), sphere.getCentre(), new Vector3D(0.0, 1.0, 0.0), 25.0 * Math.PI / 180.0, width/height);
 		
-		File output = new File("output3.png");
+		Vector3D light = new Vector3D(-10.0,0.0, 10);
+		
+		File output = new File("output4.png");
 		BufferedImage theImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		
 		for(int i = 0; i < width; i++) {
@@ -35,17 +37,14 @@ public class Main {
 				Intersection inter = new Intersection(ray);
 				
 				int a = 255;
-				int r = 0;
-				int g = 0;
-				int b = 0;
+				Colour colour = new Colour(0.0, 0.0, 0.0);
 				
 				if (sphere.intersect(inter)) {
-					r = 255;
-					g = 0;
-					b = 0;
+					
+					colour = inter.intersectionColour(sphere.getColour(), light, sphere);
 				}
 				
-				int p = (a<<24) | (r<<16) | (g<<8) | b;
+				int p = (a<<24) | ((int)colour.getR()<<16) | ((int)colour.getG()<<8) | (int)colour.getB();
 				theImage.setRGB(i, j, p);
 				
 			}
