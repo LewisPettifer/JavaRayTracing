@@ -1,6 +1,7 @@
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -19,7 +20,13 @@ public class Main {
 		
 		int width = 1920;
 		int height = 1080;
-		Sphere sphere = new Sphere(new Vector3D(0.0, 1.0, 0.0), 3, 255, 150, 150);
+		Sphere sphere = new Sphere(new Vector3D(0.0, 1.0, 0.0), 3, 255, 255, 255);
+		Plane plane = new Plane(new Vector3D(0.0, 1.0, 0), new Vector3D(0,-1,0), 0, 255, 0);
+		
+		ArrayList<Shape> shapeList = new ArrayList<Shape>();
+		
+		shapeList.add(plane);
+		shapeList.add(sphere);
 		
 		Camera cam = new Camera(new Vector3D(-5.0, 1.0, 0.0), sphere.getCentre(), new Vector3D(0.0, 1.0, 0.0), 25.0 * Math.PI / 180.0, width/height);
 		
@@ -39,9 +46,12 @@ public class Main {
 				int a = 255;
 				Colour colour = new Colour(0.0, 0.0, 0.0);
 				
-				if (sphere.intersect(inter)) {
+				for(int k = 0; k < shapeList.size(); k++) {
 					
-					colour = inter.intersectionColour(sphere.getColour(), light, sphere);
+					if (shapeList.get(k).intersect(inter)) {
+						colour = shapeList.get(k).intersectionColour(inter, light);
+					}
+					
 				}
 				
 				int p = (a<<24) | ((int)colour.getR()<<16) | ((int)colour.getG()<<8) | (int)colour.getB();
