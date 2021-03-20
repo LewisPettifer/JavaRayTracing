@@ -41,5 +41,11 @@ public class Plane extends Shape{
 		
 		return false;
 	}
+
+	@Override
+	public Colour intersectionColour(Intersection inter, Vector3D light) {
+		
+		return colour;
+	}
 	
 }

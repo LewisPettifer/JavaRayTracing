@@ -20,5 +20,11 @@ public class TriangleMesh extends Shape{
 		
 		return false;
 	}
+
+	@Override
+	public Colour intersectionColour(Intersection inter, Vector3D light) {
+		// TODO Auto-generated method stub
+		return new Colour();
+	}
 	
 }

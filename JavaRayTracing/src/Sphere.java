@@ -69,6 +69,24 @@ public class Sphere extends Shape{
 		
 		return true;
 	}
+
+	@Override
+	public Colour intersectionColour(Intersection inter, Vector3D light) {
+		
+		Vector3D interPoint = inter.intersectionPoint();
+		Vector3D normal = interPoint.sub(centre);
+		Vector3D lightVector = interPoint.sub(light);
+		
+		double dot = normal.dotProduct(lightVector);
+		
+		if (dot <= 0.0) {
+			return new Colour(0, 0, 0); // return black
+		} else if (dot > 1) {
+			dot = 1;
+		}
+		
+		return new Colour(colour.getR() * dot, colour.getG() * dot, colour.getB() * dot);
+	}
 	
 	
 }
