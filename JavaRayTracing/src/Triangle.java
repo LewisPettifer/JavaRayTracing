@@ -1,40 +1,95 @@
 
 public class Triangle extends Shape{
 	
-	private Vector3D point1;
-	private Vector3D point2;
-	private Vector3D point3;
+	private Vector3D x;
+	private Vector3D y;
+	private Vector3D z;
 	
 	public Triangle() {
-		this.point1 = new Vector3D();
-		this.point2 = new Vector3D();
-		this.point3 = new Vector3D();
+		this.x = new Vector3D();
+		this.y = new Vector3D();
+		this.z = new Vector3D();
 	}
 	
 	public Triangle(Vector3D p1, Vector3D p2, Vector3D p3) {
-		this.point1 = p1;
-		this.point2 = p2;
-		this.point3 = p3;
+		this.x = p1;
+		this.y = p2;
+		this.z = p3;
 	}
 	
 	public Triangle(Vector3D p1, Vector3D p2, Vector3D p3, int r, int g, int b) {
-		this.point1 = p1;
-		this.point2 = p2;
-		this.point3 = p3;
+		this.x = p1;
+		this.y = p2;
+		this.z = p3;
 		this.colour = new Colour(r, g, b);
 	}
 	
 	public Triangle(Vector3D p1, Vector3D p2, Vector3D p3, Colour colour) {
-		this.point1 = p1;
-		this.point2 = p2;
-		this.point3 = p3;
+		this.x = p1;
+		this.y = p2;
+		this.z = p3;
 		this.colour = colour;
 	}
 	
 	@Override
 	public Boolean intersect(Intersection inter) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		Ray localRay = inter.getRay();
+		
+		//Triangle normal
+		Vector3D xy = y.sub(x);
+		Vector3D xz = z.sub(x);
+		Vector3D normal = xy.crossProduct(xz);
+		
+		//Test if paralell
+		double normalRay = normal.dotProduct(localRay.getDirection());
+		if (Math.abs(normalRay) < 0.00001) {
+			return false;
+		}
+		
+		double d = normal.dotProduct(x);
+		
+		//calculate t
+		double nOrig = normal.dotProduct(localRay.getOrigin());
+		double t = (nOrig + d) / normalRay;
+		inter.setT(t);
+		
+		if (t < 0) {
+			return false; //Triangle is behind
+		}
+		
+		Vector3D intersection = inter.intersectionPoint();
+		
+		//insideout tests
+		Vector3D c;
+		Vector3D edge;
+		Vector3D edgeInt;
+		
+		//edge 1
+		edge = y.sub(x);
+		edgeInt = intersection.sub(x);
+		c = edge.crossProduct(edgeInt);
+		if(normal.dotProduct(c) < 0) {
+			return false;
+		}
+		
+		//edge 2
+		edge = z.sub(y);
+		edgeInt = intersection.sub(y);
+		c = edge.crossProduct(edgeInt);
+		if(normal.dotProduct(c) < 0) {
+			return false;
+		}
+		
+		//edge 3
+		edge = x.sub(z);
+		edgeInt = intersection.sub(z);
+		c = edge.crossProduct(edgeInt);
+		if(normal.dotProduct(c) < 0) {
+			return false;
+		}
+		
+		return true;
 	}
 
 	@Override
