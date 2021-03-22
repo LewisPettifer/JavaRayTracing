@@ -4,8 +4,16 @@ public class TriangleMesh extends Shape{
 
 	private ArrayList<Triangle> triangles;
 	
+	public TriangleMesh() {
+		
+	}
+	
 	public TriangleMesh(ArrayList<Triangle> t) {
 		this.triangles = t;
+	}
+	
+	public void addTriangle(Triangle t) {
+		triangles.add(t);
 	}
 	
 	@Override
@@ -20,6 +28,7 @@ public class TriangleMesh extends Shape{
 		
 		return false;
 	}
+	
 
 	@Override
 	public Colour intersectionColour(Intersection inter, Vector3D light) {
