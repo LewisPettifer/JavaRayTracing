@@ -5,7 +5,7 @@ public class TriangleMesh extends Shape{
 	private ArrayList<Triangle> triangles;
 	
 	public TriangleMesh() {
-		
+		triangles = new ArrayList<Triangle>();
 	}
 	
 	public TriangleMesh(ArrayList<Triangle> t) {
@@ -33,7 +33,7 @@ public class TriangleMesh extends Shape{
 	@Override
 	public Colour intersectionColour(Intersection inter, Vector3D light) {
 		// TODO Auto-generated method stub
-		return new Colour();
+		return new Colour(255, 0, 0);
 	}
 	
 }

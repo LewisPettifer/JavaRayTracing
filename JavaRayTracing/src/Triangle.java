@@ -39,22 +39,28 @@ public class Triangle extends Shape{
 		//Triangle normal
 		Vector3D xy = y.sub(x);
 		Vector3D xz = z.sub(x);
-		Vector3D normal = xy.crossProduct(xz);
+		//Vector3D normal = xy.crossProduct(xz);
+		Vector3D normal = xz.crossProduct(xy);
 		
 		//Test if paralell
-		double normalRay = normal.dotProduct(localRay.getDirection());
+		//double normalRay = normal.dotProduct(localRay.getDirection());
+		double normalRay = localRay.getDirection().dotProduct(normal);
 		if (Math.abs(normalRay) < 0.00001) {
+			System.out.println("First false");
 			return false;
 		}
 		
-		double d = normal.dotProduct(x);
+		//double d = normal.dotProduct(x);
+		double d = x.dotProduct(normal);
 		
 		//calculate t
-		double nOrig = normal.dotProduct(localRay.getOrigin());
-		double t = (nOrig + d) / normalRay;
+		double t = ((localRay.getOrigin().dotProduct(normal)) + d) / normalRay;
+		//double t = ((normal.dotProduct(localRay.getOrigin())) + d) / normalRay;
 		inter.setT(t);
 		
 		if (t < 0) {
+			System.out.println("second false");
+
 			return false; //Triangle is behind
 		}
 		
@@ -70,6 +76,8 @@ public class Triangle extends Shape{
 		edgeInt = intersection.sub(x);
 		c = edge.crossProduct(edgeInt);
 		if(normal.dotProduct(c) < 0) {
+			System.out.println("thrid false");
+
 			return false;
 		}
 		
@@ -77,7 +85,9 @@ public class Triangle extends Shape{
 		edge = z.sub(y);
 		edgeInt = intersection.sub(y);
 		c = edge.crossProduct(edgeInt);
-		if(normal.dotProduct(c) < 0) {
+		if(c.dotProduct(normal) > 0) {
+			System.out.println("forth false");
+
 			return false;
 		}
 		
@@ -85,9 +95,13 @@ public class Triangle extends Shape{
 		edge = x.sub(z);
 		edgeInt = intersection.sub(z);
 		c = edge.crossProduct(edgeInt);
-		if(normal.dotProduct(c) < 0) {
+		if(normal.dotProduct(c) > 0) {
+			System.out.println("fith false");
+
 			return false;
 		}
+		
+		System.out.println("Hit!");
 		
 		return true;
 	}

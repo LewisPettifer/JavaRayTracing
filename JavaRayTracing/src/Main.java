@@ -20,15 +20,21 @@ public class Main {
 		
 		int width = 1920;
 		int height = 1080;
+		Colour red = new Colour(255, 0, 0);
 		Sphere sphere = new Sphere(new Vector3D(0.0, 1.0, 0.0), 3, 255, 255, 255);
 		Plane planeGrass = new Plane(new Vector3D(0.0, 1.0, 0), new Vector3D(0,-1,0), 76, 153, 0);
 		Plane planeSky = new Plane(new Vector3D(1.0, 0.0, 0), new Vector3D(1, 0, 0), 0, 102, 204);
+		TriangleMesh strip = new TriangleMesh();
+		Triangle t1 = new Triangle(new Vector3D(0, 1.0, 0.0), new Vector3D(0, 1, 1), new Vector3D(1,1,0), red);
+		
+		strip.addTriangle(t1);
 		
 		ArrayList<Shape> shapeList = new ArrayList<Shape>();
 
-		shapeList.add(planeSky);
-		shapeList.add(planeGrass);
-		shapeList.add(sphere);
+		//shapeList.add(planeSky);
+		//shapeList.add(planeGrass);
+		//shapeList.add(sphere);
+		shapeList.add(strip);
 		
 		Camera cam = new Camera(new Vector3D(-5.0, 1.0, 0.0), sphere.getCentre(), new Vector3D(0.0, 1.0, 0.0), 25.0 * Math.PI / 180.0, width/height);
 		
