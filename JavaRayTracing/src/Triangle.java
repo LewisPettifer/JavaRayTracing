@@ -39,32 +39,27 @@ public class Triangle extends Shape{
 		//Triangle normal
 		Vector3D xy = y.sub(x);
 		Vector3D xz = z.sub(x);
-		//Vector3D normal = xy.crossProduct(xz);
-		Vector3D normal = xz.crossProduct(xy);
+		Vector3D normal = xy.crossProduct(xz);
 		
 		//Test if paralell
-		//double normalRay = normal.dotProduct(localRay.getDirection());
-		double normalRay = localRay.getDirection().dotProduct(normal);
-		if (Math.abs(normalRay) < 0.00001) {
-			System.out.println("First false");
+		double normalRay = normal.dotProduct(localRay.getDirection());
+		if (Math.abs(normalRay) < 0.000001) {
+			//System.out.println("First false");
 			return false;
 		}
 		
-		//double d = normal.dotProduct(x);
-		double d = x.dotProduct(normal);
+		double d = normal.dotProduct(x);
 		
 		//calculate t
-		double t = ((localRay.getOrigin().dotProduct(normal)) + d) / normalRay;
-		//double t = ((normal.dotProduct(localRay.getOrigin())) + d) / normalRay;
+		double t = ((normal.dotProduct(localRay.getOrigin())) + d) / normalRay;
 		inter.setT(t);
 		
 		if (t < 0) {
-			System.out.println("second false");
-
+			//System.out.println("second false: t: " + t);
 			return false; //Triangle is behind
 		}
 		
-		Vector3D intersection = inter.intersectionPoint();
+		Vector3D point = localRay.getDirection().multi(t).add(localRay.getOrigin());
 		
 		//insideout tests
 		Vector3D c;
@@ -73,30 +68,30 @@ public class Triangle extends Shape{
 		
 		//edge 1
 		edge = y.sub(x);
-		edgeInt = intersection.sub(x);
+		edgeInt = point.sub(x);
 		c = edge.crossProduct(edgeInt);
 		if(normal.dotProduct(c) < 0) {
-			System.out.println("thrid false");
+			//System.out.println("thrid false");
 
 			return false;
 		}
 		
 		//edge 2
 		edge = z.sub(y);
-		edgeInt = intersection.sub(y);
+		edgeInt = point.sub(y);
 		c = edge.crossProduct(edgeInt);
-		if(c.dotProduct(normal) > 0) {
-			System.out.println("forth false");
+		if(c.dotProduct(normal) < 0) {
+			//System.out.println("forth false");
 
 			return false;
 		}
 		
 		//edge 3
 		edge = x.sub(z);
-		edgeInt = intersection.sub(z);
+		edgeInt = point.sub(z);
 		c = edge.crossProduct(edgeInt);
-		if(normal.dotProduct(c) > 0) {
-			System.out.println("fith false");
+		if(normal.dotProduct(c) < 0) {
+			//System.out.println("fith false");
 
 			return false;
 		}
