@@ -102,7 +102,7 @@ public class Triangle extends Shape{
 	}
 
 	@Override
-	public Colour intersectionColour(Intersection inter, Vector3D light) {
+	public Colour intersectionColour(Intersection inter, Light light) {
 		// TODO Auto-generated method stub
 		return colour;
 	}

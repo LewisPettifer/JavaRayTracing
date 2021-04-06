@@ -71,11 +71,11 @@ public class Sphere extends Shape{
 	}
 
 	@Override
-	public Colour intersectionColour(Intersection inter, Vector3D light) {
+	public Colour intersectionColour(Intersection inter, Light light) {
 		
 		Vector3D interPoint = inter.intersectionPoint();
 		Vector3D normal = interPoint.sub(centre);
-		Vector3D lightVector = interPoint.sub(light);
+		Vector3D lightVector = interPoint.sub(light.getPosition());
 		
 		double dot = normal.dotProduct(lightVector);
 		

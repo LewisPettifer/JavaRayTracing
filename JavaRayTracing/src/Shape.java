@@ -8,5 +8,5 @@ public abstract class Shape {
 	}
 	
 	public abstract Boolean intersect(Intersection inter);
-	public abstract Colour intersectionColour(Intersection inter, Vector3D light);
+	public abstract Colour intersectionColour(Intersection inter, Light light);
 }
