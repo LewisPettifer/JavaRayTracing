@@ -42,7 +42,7 @@ public class Ray {
 	}
 
 	public Vector3D calculateT(double t) {
-		return (getOrigin().add(getDirection())).multi(t);
+		return origin.add(direction.multi(t));
 	}
 	
 }

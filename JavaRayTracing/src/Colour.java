@@ -1,9 +1,9 @@
 
 public class Colour {
 
-	private double r;
-	private double g;
-	private double b;
+	private int r;
+	private int g;
+	private int b;
 	
 	public Colour() {
 		this.r = 255;
@@ -11,21 +11,21 @@ public class Colour {
 		this.b = 0;
 	}
 	
-	public Colour(double r, double g, double b) {
+	public Colour(int r, int g, int b) {
 		this.r = r;
 		this.g = g;
 		this.b = b;
 	}
 
-	public double getR() {
+	public int getR() {
 		return r;
 	}
 
-	public double getG() {
+	public int getG() {
 		return g;
 	}
 
-	public double getB() {
+	public int getB() {
 		return b;
 	}
 	

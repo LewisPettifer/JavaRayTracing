@@ -31,21 +31,34 @@ public class Plane extends Shape{
 	@Override
 	public Boolean intersect(Intersection inter) {
 		
-		double dotResult = normal.dotProduct(inter.getRay().getDirection());
+		double denominator = inter.getRay().getDirection().dotProduct(normal);
 		
-		if (dotResult > 0.00001) {
-			Vector3D distOrig = centre.sub(inter.getRay().getOrigin());
-			double t = distOrig.dotProduct(normal) / dotResult;
-			return (t >= 0);
+		if (denominator != 0) {
+			double t = (centre.sub(inter.getRay().getOrigin())).dotProduct(normal) / denominator;
+			if ( t >= 0) {
+				inter.setT(t);
+				return true;
+			}
 		}
 		
 		return false;
 	}
 
 	@Override
-	public Colour intersectionColour(Intersection inter, Vector3D light) {
+	public Colour intersectionColour(Intersection inter, Light light) {
 		
-		return colour;
+		Vector3D lightVector = (inter.intersectionPoint().sub(light.getPosition())).normalised();
+		//Vector3D lightVector = new Vector3D(lightVectorTemplate.getX(), lightVectorTemplate.getY(), Math.round(lightVectorTemplate.getZ())).normalised();
+		Vector3D normaledNorm = normal.normalised();
+		
+		double lightAngle = Math.max(1.0, lightVector.dotProduct(normaledNorm)) / (normaledNorm.lengthsqrt() * lightVector.lengthsqrt());
+		
+		int lr = (int) ((colour.getR() /255.0)* light.getIntensity() * Math.max(0.0 , lightAngle));
+		int lg = (int) ((colour.getG() /255.0)* light.getIntensity() * Math.max(0.0 , lightAngle));
+		int lb = (int) ((colour.getB() /255.0)* light.getIntensity() * Math.max(0.0 , lightAngle));
+		
+		
+		return new Colour(lr, lg, lb);
 	}
 	
 }

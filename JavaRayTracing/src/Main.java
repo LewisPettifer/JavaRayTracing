@@ -21,24 +21,27 @@ public class Main {
 		int width = 1920;
 		int height = 1080;
 		Colour red = new Colour(255, 0, 0);
-		Sphere sphere = new Sphere(new Vector3D(0.0, 1.0, 0.0), 3, 255, 255, 255);
-		Plane planeGrass = new Plane(new Vector3D(0.0, -5.0, 0), new Vector3D(0,-1,0), 76, 153, 0);
-		Plane planeSky = new Plane(new Vector3D(0.0, 0.0, -5), new Vector3D(0, 0, 5), 0, 102, 204);
+		Sphere sphere = new Sphere(new Vector3D(0.0, 1.0, 0.0), 1, 255, 0, 255);
+		Plane planeGrass = new Plane(new Vector3D( 0, -1, 0), new Vector3D(0, -1, 0), 76, 153, 0);
+		Plane planeSky = new Plane(new Vector3D(0.0, 0.0, 0), new Vector3D(0, 0, -1), 20, 102, 204);
 		TriangleMesh strip = new TriangleMesh();
 		Triangle t1 = new Triangle(new Vector3D(0, 0, 0.0), new Vector3D(1, 1, 0), new Vector3D(0,1,1), red);
 		
-		Light light = new Light();
+		Light light = new Light(5, 0, 3);
 		
 		strip.addTriangle(t1);
 		
 		ArrayList<Shape> shapeList = new ArrayList<Shape>();
 
+		
 		shapeList.add(planeSky);
 		shapeList.add(planeGrass);
 		shapeList.add(sphere);
+		
 		//shapeList.add(strip);
 		
 		Camera cam = new Camera(new Vector3D(0.0, 0.0, -5.0), new Vector3D(0,0,0), new Vector3D(0.0, 1.0, 0.0), 25.0 * Math.PI / 180.0, width/height);
+		
 		
 		File output = new File("output4.png");
 		BufferedImage theImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -52,7 +55,7 @@ public class Main {
 				Intersection inter = new Intersection(ray);
 				
 				int a = 255;
-				Colour colour = new Colour(0.0, 0.0, 0.0);
+				Colour colour = new Colour(0, 0, 0);
 				
 				for(int k = 0; k < shapeList.size(); k++) {
 					
