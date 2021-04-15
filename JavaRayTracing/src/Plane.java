@@ -48,7 +48,6 @@ public class Plane extends Shape{
 	public Colour intersectionColour(Intersection inter, Light light) {
 		
 		Vector3D lightVector = (inter.intersectionPoint().sub(light.getPosition())).normalised();
-		//Vector3D lightVector = new Vector3D(lightVectorTemplate.getX(), lightVectorTemplate.getY(), Math.round(lightVectorTemplate.getZ())).normalised();
 		Vector3D normaledNorm = normal.normalised();
 		
 		double lightAngle = Math.max(1.0, lightVector.dotProduct(normaledNorm)) / (normaledNorm.lengthsqrt() * lightVector.lengthsqrt());
