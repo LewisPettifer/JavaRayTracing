@@ -20,37 +20,43 @@ public class Main {
 		
 		int width = 1920;
 		int height = 1080;
-		Colour red = new Colour(255, 0, 0);
-		Sphere sphere = new Sphere(new Vector3D(0.0, 1.0, 0.0), 1, 255, 0, 255);
+		//Colour red = new Colour(255, 0, 0);
+		Sphere sphere = new Sphere(new Vector3D(0.0, 0.0, 0.0), 2, 255, 0, 255);
 		Plane planeGrass = new Plane(new Vector3D( 0, -1, 0), new Vector3D(0, -1, 0), 76, 153, 0);
-		Plane planeSky = new Plane(new Vector3D(0.0, 0.0, 0), new Vector3D(0, 0, -1), 20, 102, 204);
-		TriangleMesh strip = new TriangleMesh();
-		Triangle t1 = new Triangle(new Vector3D(0, 0, 0.0), new Vector3D(1, 1, 0), new Vector3D(0,1,1), red);
+		Plane planeSky = new Plane(new Vector3D(0.0, 0.0, 2), new Vector3D(0, 0, -1), 20, 102, 204);
+		//TriangleMesh strip = new TriangleMesh();
+		//Triangle t1 = new Triangle(new Vector3D(0, 0, 0.0), new Vector3D(1, 1, 0), new Vector3D(0,1,1), red);
 		
-		Light light = new Light(5, 0, 3);
+		Light light = new Light(5, 0, 0);
 		
-		strip.addTriangle(t1);
+		//strip.addTriangle(t1);
 		
-		ArrayList<Shape> shapeList = new ArrayList<Shape>();
+		//ArrayList<Shape> shapeList = new ArrayList<Shape>();
 
 		
-		shapeList.add(planeSky);
-		shapeList.add(planeGrass);
-		shapeList.add(sphere);
+		//shapeList.add(planeSky);
+		//shapeList.add(planeGrass);
+		//shapeList.add(sphere);
 		
 		//shapeList.add(strip);
 		
 		Camera cam = new Camera(new Vector3D(0.0, 0.0, -5.0), new Vector3D(0,0,0), new Vector3D(0.0, 1.0, 0.0), 25.0 * Math.PI / 180.0, width/height);
 		
+		Scene scene = new Scene();
+		scene.setCamera(cam);
+		scene.addObject(sphere);
+		scene.addObject(planeSky);
+		scene.addObject(planeGrass);
+		scene.addLight(light);
 		
 		File output = new File("output4.png");
 		BufferedImage theImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		
+		int a = 255;
 		for(int i = 0; i < width; i++) {
 			for(int j = 0; j < height; j++) {
 				
 				Vector3D coord = new Vector3D((2.0*i) / width - 1.0, (-2.0*j) / height + 1.0, 0);
-				Ray ray = cam.makeRay(coord);
+				/*Ray ray = cam.makeRay(coord);
 				
 				Intersection inter = new Intersection(ray);
 				
@@ -63,7 +69,9 @@ public class Main {
 						colour = shapeList.get(k).intersectionColour(inter, light);
 					}
 					
-				}
+				}*/
+				
+				Colour colour = scene.getPixelColour(coord);
 				
 				int p = (a<<24) | ((int)colour.getR()<<16) | ((int)colour.getG()<<8) | (int)colour.getB();
 				theImage.setRGB(i, j, p);

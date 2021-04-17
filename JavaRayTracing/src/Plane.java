@@ -35,7 +35,7 @@ public class Plane extends Shape{
 		
 		if (denominator != 0) {
 			double t = (centre.sub(inter.getRay().getOrigin())).dotProduct(normal) / denominator;
-			if ( t >= 0) {
+			if ( t > 0) {
 				inter.setT(t);
 				return true;
 			}
