@@ -73,15 +73,16 @@ public class Sphere extends Shape{
 	@Override
 	public Colour intersectionColour(Intersection inter, Light light) {
 		
-		Vector3D normal = (inter.intersectionPoint().sub(centre));
-		Vector3D lightVector = (inter.intersectionPoint().sub(light.getPosition()));
+		Vector3D normal = (inter.intersectionPoint().sub(centre)).normalised();
+		Vector3D lightVector = (light.getPosition().sub(inter.intersectionPoint())).normalised();
 		
-		double lightAngle = lightVector.dotProduct(normal) / normal.lengthsqrt() * lightVector.lengthsqrt();
+		double lightAngle = lightVector.dotProduct(normal) / (normal.lengthsqrt() * lightVector.lengthsqrt());
 		
-		int lr = (int) ((colour.getR() /255)* light.getIntensity() * Math.max(0.0 , lightAngle));
-		int lg = (int) ((colour.getG() /255)* light.getIntensity() * Math.max(0.0 , lightAngle));
-		int lb = (int) ((colour.getB() /255)* light.getIntensity() * Math.max(0.0 , lightAngle));
+		System.out.println("Light angle: " +  lightAngle);
 		
+		int lr = (int) (colour.getR()* light.getIntensity() * Math.max(0.0 , lightAngle));
+		int lg = (int) (colour.getG()* light.getIntensity() * Math.max(0.0 , lightAngle));
+		int lb = (int) (colour.getB()* light.getIntensity() * Math.max(0.0 , lightAngle));
 		
 		return new Colour(lr, lg, lb);
 	}

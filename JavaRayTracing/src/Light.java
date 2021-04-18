@@ -8,13 +8,13 @@ public class Light {
 	public Light() {
 		setPosition(new Vector3D());
 		colour = new Colour(255, 255, 204);
-		intensity = 5.0;
+		intensity = 1.0;
 	}
 
 	public Light(double x, double y, double z) {
 		setPosition(x,y,z);
 		colour = new Colour(255, 255, 204);
-		intensity = 5.0;
+		intensity = 1.0;
 	}
 
 	public Vector3D getPosition() {

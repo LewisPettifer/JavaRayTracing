@@ -50,12 +50,11 @@ public class Plane extends Shape{
 		Vector3D lightVector = (inter.intersectionPoint().sub(light.getPosition())).normalised();
 		Vector3D normaledNorm = normal.normalised();
 		
-		double lightAngle = Math.max(1.0, lightVector.dotProduct(normaledNorm)) / (normaledNorm.lengthsqrt() * lightVector.lengthsqrt());
+		double lightAngle =  lightVector.dotProduct(normaledNorm) / (normaledNorm.lengthsqrt() * lightVector.lengthsqrt());
 		
-		int lr = (int) ((colour.getR() /255.0)* light.getIntensity() * Math.max(0.0 , lightAngle));
-		int lg = (int) ((colour.getG() /255.0)* light.getIntensity() * Math.max(0.0 , lightAngle));
-		int lb = (int) ((colour.getB() /255.0)* light.getIntensity() * Math.max(0.0 , lightAngle));
-		
+		int lr = (int) (colour.getR()* light.getIntensity() * Math.max(0.0 , lightAngle));
+		int lg = (int) (colour.getG()* light.getIntensity() * Math.max(0.0 , lightAngle));
+		int lb = (int) (colour.getB()* light.getIntensity() * Math.max(0.0 , lightAngle));
 		
 		return new Colour(lr, lg, lb);
 	}
