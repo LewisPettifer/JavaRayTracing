@@ -74,7 +74,7 @@ public class Sphere extends Shape{
 	public Colour intersectionColour(Intersection inter, Light light) {
 		
 		Vector3D normal = (inter.intersectionPoint().sub(centre)).normalised();
-		Vector3D lightVector = (light.getPosition().sub(inter.intersectionPoint())).normalised();
+		Vector3D lightVector = (inter.intersectionPoint().sub(light.getPosition())).normalised();
 		
 		double lightAngle = lightVector.dotProduct(normal) / (normal.lengthsqrt() * lightVector.lengthsqrt());
 		
