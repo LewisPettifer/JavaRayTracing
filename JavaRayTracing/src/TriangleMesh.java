@@ -31,7 +31,7 @@ public class TriangleMesh extends Shape{
 	
 
 	@Override
-	public Colour intersectionColour(Intersection inter, Vector3D light) {
+	public Colour intersectionColour(Intersection inter, Light light) {
 		// TODO Auto-generated method stub
 		return new Colour(255, 0, 0);
 	}
