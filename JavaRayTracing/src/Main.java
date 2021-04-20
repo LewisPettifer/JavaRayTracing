@@ -24,11 +24,11 @@ public class Main {
 		Sphere sphere = new Sphere(new Vector3D(0.0, 0.0, 0.0), 3, 255, 0, 255);
 		Sphere sphere2 = new Sphere(new Vector3D(-500.0, 20.0, 0.0), 50, 0, 255, 255);
 		Plane planeGrass = new Plane(new Vector3D( 0, -5, 0), new Vector3D(0, -1, 0), 76, 153, 0);
-		Plane planeSky = new Plane(new Vector3D(0.0, 0.0, 10), new Vector3D(0, 0, 1), 20, 102, 204);
+		Plane planeSky = new Plane(new Vector3D(0.0, 0.0, 4), new Vector3D(0, 0, 1), 20, 102, 204);
 		//TriangleMesh strip = new TriangleMesh();
 		//Triangle t1 = new Triangle(new Vector3D(0, 0, 0.0), new Vector3D(1, 1, 0), new Vector3D(0,1,1), red);
 		
-		Light light = new Light(10, 0, -5);
+		Light light = new Light(5, 5, -5);
 		
 		//strip.addTriangle(t1);
 		
@@ -48,7 +48,7 @@ public class Main {
 		scene.setCamera(cam);
 		scene.addObject(sphere);
 		scene.addObject(planeSky);
-		scene.addObject(planeGrass);
+		//scene.addObject(planeGrass);
 		scene.addLight(light);
 		//scene.addObject(sphere2);
 		

@@ -87,5 +87,8 @@ public class Sphere extends Shape{
 		return new Colour(lr, lg, lb);
 	}
 	
-	
+	@Override
+	public Vector3D getNormal(Intersection inter) {
+		return inter.intersectionPoint().sub(centre);
+	}
 }

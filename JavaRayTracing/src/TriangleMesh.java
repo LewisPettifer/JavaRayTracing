@@ -36,4 +36,8 @@ public class TriangleMesh extends Shape{
 		return new Colour(255, 0, 0);
 	}
 	
+	@Override
+	public Vector3D getNormal(Intersection inter) {
+		return new Vector3D();
+	}
 }

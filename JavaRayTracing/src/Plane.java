@@ -59,4 +59,9 @@ public class Plane extends Shape{
 		return new Colour(lr, lg, lb);
 	}
 	
+	@Override
+	public Vector3D getNormal(Intersection inter) {
+		return normal;
+	}
+	
 }

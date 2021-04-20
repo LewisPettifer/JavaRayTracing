@@ -70,7 +70,23 @@ public class Scene {
 		}
 		
 		closest.intersect(intersection);
-		colour = closest.intersectionColour(intersection, lights.get(0));
+		
+		Vector3D shadowRayOrigin = intersection.intersectionPoint().sub(closest.getNormal(intersection));
+		Vector3D shadowRayDirection = lights.get(0).getPosition().sub(shadowRayOrigin);
+		
+		Ray shadowRay = new Ray(shadowRayOrigin, shadowRayDirection);
+		Intersection shadowIntersection = new Intersection(shadowRay);
+		
+		for (int i = 0; i < objects.size(); i++) {
+			
+			if (objects.get(i).intersect(shadowIntersection)) {
+				colour = new Colour(0,0,0);
+			} else {
+				colour = closest.intersectionColour(intersection, lights.get(0));
+			}
+			
+		}
+		//colour = closest.intersectionColour(intersection, lights.get(0));
 		
 		return colour;
 	}

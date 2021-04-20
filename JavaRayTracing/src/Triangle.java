@@ -107,4 +107,8 @@ public class Triangle extends Shape{
 		return colour;
 	}
 
+	@Override
+	public Vector3D getNormal(Intersection inter) {
+		return new Vector3D();
+	}
 }
