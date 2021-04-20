@@ -28,7 +28,7 @@ public class Main {
 		//TriangleMesh strip = new TriangleMesh();
 		//Triangle t1 = new Triangle(new Vector3D(0, 0, 0.0), new Vector3D(1, 1, 0), new Vector3D(0,1,1), red);
 		
-		Light light = new Light(15, 0, 5);
+		Light light = new Light(10, 0, -5);
 		
 		//strip.addTriangle(t1);
 		
@@ -48,7 +48,7 @@ public class Main {
 		scene.setCamera(cam);
 		scene.addObject(sphere);
 		scene.addObject(planeSky);
-		//scene.addObject(planeGrass);
+		scene.addObject(planeGrass);
 		scene.addLight(light);
 		//scene.addObject(sphere2);
 		
