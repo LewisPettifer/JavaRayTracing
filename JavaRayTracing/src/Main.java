@@ -28,7 +28,7 @@ public class Main {
 		//TriangleMesh strip = new TriangleMesh();
 		//Triangle t1 = new Triangle(new Vector3D(0, 0, 0.0), new Vector3D(1, 1, 0), new Vector3D(0,1,1), red);
 		
-		Light light = new Light(5, 5, -5);
+		Light light = new Light(5, 0, -5);
 		
 		//strip.addTriangle(t1);
 		

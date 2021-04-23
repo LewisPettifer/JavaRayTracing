@@ -78,7 +78,7 @@ public class Sphere extends Shape{
 		
 		double lightAngle = lightVector.dotProduct(normal) / (normal.lengthsqrt() * lightVector.lengthsqrt());
 		
-		System.out.println("Light angle: " +  lightAngle);
+		//System.out.println("Light angle: " +  lightAngle);
 		
 		int lr = (int) (colour.getR()* light.getIntensity() * Math.max(0.0 , lightAngle));
 		int lg = (int) (colour.getG()* light.getIntensity() * Math.max(0.0 , lightAngle));

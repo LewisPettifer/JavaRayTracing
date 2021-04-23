@@ -71,22 +71,34 @@ public class Scene {
 		
 		closest.intersect(intersection);
 		
-		Vector3D shadowRayOrigin = intersection.intersectionPoint().sub(closest.getNormal(intersection));
+		ArrayList<Shape> shadowList = new ArrayList<>();
+		
+		for(int i = 0; i < objects.size(); i++) {
+			if (!(closest == objects.get(i))) {
+				shadowList.add(objects.get(i));
+			}
+		}
+		
+		Vector3D shadowRayOrigin = intersection.intersectionPoint().sub(closest.getNormal(intersection).multi(0.0001));
 		Vector3D shadowRayDirection = lights.get(0).getPosition().sub(shadowRayOrigin);
 		
 		Ray shadowRay = new Ray(shadowRayOrigin, shadowRayDirection);
 		Intersection shadowIntersection = new Intersection(shadowRay);
 		
-		for (int i = 0; i < objects.size(); i++) {
+		for (int i = 0; i < shadowList.size(); i++) {
 			
-			if (objects.get(i).intersect(shadowIntersection)) {
+			colour = closest.intersectionColour(intersection, lights.get(0));;
+			
+			if (shadowList.get(i).intersect(shadowIntersection)) {
+				//System.out.print("Shadow!");
 				colour = new Colour(0,0,0);
-			} else {
-				colour = closest.intersectionColour(intersection, lights.get(0));
+				
 			}
 			
 		}
 		//colour = closest.intersectionColour(intersection, lights.get(0));
+		
+		//System.out.println(" Colour: " + colour.getR() + " " + colour.getG() + " " + colour.getB());
 		
 		return colour;
 	}
