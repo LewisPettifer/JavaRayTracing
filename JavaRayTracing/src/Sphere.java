@@ -58,14 +58,33 @@ public class Sphere extends Shape{
 		double t1 = (-b - Math.sqrt(intersect)) / (2 * a);
 		double t2 = (-b + Math.sqrt(intersect)) / (2 * a);
 		
-		//test if either points are valid
-		if (t1 > 0.0001 && t1 < inter.getT()) {
+		//Tests which intersection is closer
+		if (t1 > t2) {
+			//swap
+			double temp = t1;
+			t1 = t2;
+			t2 = temp;
+		}
+		
+		if (t1 > 0) {
+			//t1 is in front of the camera
 			inter.setT(t1);
-		} else if (t2 > 0.0001 && t2 < inter.getT()) {
+		} else if (t2 > 0) {
+			//t2 is infront of the camera
+			inter.setT(t2);
+		} else {
+			//neither are infront of camera
+			return false;
+		}
+		
+		/*//test if either points are valid
+		if (t1 > 0 && t1 < inter.getT()) {
+			inter.setT(t1);
+		} else if (t2 > 0 && t2 < inter.getT()) {
 			inter.setT(t2);
 		} else {
 			return false; //Both failed
-		}
+		}*/
 		
 		return true;
 	}
