@@ -76,16 +76,7 @@ public class Sphere extends Shape{
 			//neither are infront of camera
 			return false;
 		}
-		
-		/*//test if either points are valid
-		if (t1 > 0 && t1 < inter.getT()) {
-			inter.setT(t1);
-		} else if (t2 > 0 && t2 < inter.getT()) {
-			inter.setT(t2);
-		} else {
-			return false; //Both failed
-		}*/
-		
+
 		return true;
 	}
 
