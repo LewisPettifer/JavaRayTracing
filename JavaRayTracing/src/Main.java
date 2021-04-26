@@ -18,8 +18,8 @@ public class Main {
 		Vector3D squareroot = new Vector3D(3.0,4.0,0.0);
 		System.out.println(squareroot.length());
 		
-		int width = 1920;
-		int height = 1080;
+		int width = 200;
+		int height = 200;
 		Colour red = new Colour(255, 0, 0);
 		Sphere sphere = new Sphere(new Vector3D(0.0, 0.0, 0.0), 3, 255, 0, 255);
 		Sphere sphere2 = new Sphere(new Vector3D(.0, 20.0, 0.0), 2, 0, 255, 255);
@@ -28,6 +28,18 @@ public class Main {
 		//TriangleMesh strip = new TriangleMesh();
 		Triangle t1 = new Triangle(new Vector3D(1, 4, 6), new Vector3D(1, -1, 1), new Vector3D(2, 5, -1), red);
 		Triangle t2 = new Triangle(new Vector3D(0, 0, 0), new Vector3D(0, 1, 0), new Vector3D(1, 0, 0), red);
+		
+		ModelCreator mc = new ModelCreator("BunnyV.txt", "BunnyT.txt");
+		
+		//ArrayList<Vector3D> verts = mc.readVertices();
+		//ArrayList<ArrayList<Integer>> teis = mc.readTriangles(); 
+		TriangleMesh tm = mc.makeTriangles();
+		//System.out.println(teis.size());
+		
+		//for(int i = 0; i < verts.size(); i++) {
+		//	System.out.println(verts.get(i));
+		//}
+		
 		
 		Light light = new Light(5, 0, -5);
 		
@@ -54,12 +66,15 @@ public class Main {
 		scene.addObject(t1);
 		//scene.addObject(t2);
 		//scene.addObject(sphere2);
+		scene.addObject(tm);
 		
 		File output = new File("output4.png");
 		BufferedImage theImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		int a = 255;
 		for(int i = 0; i < width; i++) {
 			for(int j = 0; j < height; j++) {
+				
+				System.out.println("i: " + i + " j: " + j);
 				
 				//Perspective coords
 				Vector3D coord = new Vector3D((2.0*i) / width - 1.0, (-2.0*j) / height + 1.0, 0);
@@ -96,6 +111,6 @@ public class Main {
 			System.out.println("Failed to save image.");
 			e.printStackTrace();
 		}
+		System.out.println("Done!");
 	}
-
 }

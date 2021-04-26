@@ -25,10 +25,12 @@ public class TriangleMesh extends Shape{
 				return true;
 			}
 		}
-		
 		return false;
 	}
 	
+	public int size() {
+		return triangles.size();
+	}
 
 	@Override
 	public Colour intersectionColour(Intersection inter, Light light) {

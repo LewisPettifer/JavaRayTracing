@@ -62,7 +62,7 @@ public class Triangle extends Shape{
 		inter.setT(t);
 		
 		if (t < 0) {
-			System.out.println("second false: t: " + t);
+			//System.out.println("second false: t: " + t);
 			return false; //Triangle is behind
 		}
 		
@@ -80,7 +80,7 @@ public class Triangle extends Shape{
 		edgeInt = point.sub(x);
 		c = edge.crossProduct(edgeInt);
 		if(normal.dotProduct(c) < 0) {
-			System.out.println("third false: t: " + t);
+			//System.out.println("third false: t: " + t);
 			return false;
 		}
 		
@@ -89,7 +89,7 @@ public class Triangle extends Shape{
 		edgeInt = point.sub(y);
 		c = edge.crossProduct(edgeInt);
 		if(c.dotProduct(normal) < 0) {
-			System.out.println("forth false: t: " + t);
+			//System.out.println("forth false: t: " + t);
 			return false;
 		}
 		
@@ -98,11 +98,11 @@ public class Triangle extends Shape{
 		edgeInt = point.sub(z);
 		c = edge.crossProduct(edgeInt);
 		if(normal.dotProduct(c) < 0) {
-			System.out.println("fith false: t: " + t);
+			//System.out.println("fith false: t: " + t);
 			return false;
 		}
 		
-		System.out.println("Hit!");
+		//System.out.println("Hit!");
 		return true;
 	}
 
