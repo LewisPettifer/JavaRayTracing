@@ -31,8 +31,10 @@ public class Plane extends Shape{
 	@Override
 	public Boolean intersect(Intersection inter) {
 		
+		//Calculate the denominator
 		double denominator = inter.getRay().getDirection().dotProduct(normal);
 		
+		//test if the ray and plane are parallel
 		if (denominator != 0) {
 			double t = (centre.sub(inter.getRay().getOrigin())).dotProduct(normal) / denominator;
 			if ( t >= 0) {
@@ -40,7 +42,6 @@ public class Plane extends Shape{
 				return true;
 			}
 		}
-		
 		return false;
 	}
 

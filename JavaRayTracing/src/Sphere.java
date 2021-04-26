@@ -70,13 +70,12 @@ public class Sphere extends Shape{
 			//t1 is in front of the camera
 			inter.setT(t1);
 		} else if (t2 > 0) {
-			//t2 is infront of the camera
+			//t2 is in front of the camera
 			inter.setT(t2);
 		} else {
-			//neither are infront of camera
+			//neither are in front of camera
 			return false;
 		}
-
 		return true;
 	}
 

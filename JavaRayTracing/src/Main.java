@@ -20,13 +20,14 @@ public class Main {
 		
 		int width = 1920;
 		int height = 1080;
-		//Colour red = new Colour(255, 0, 0);
+		Colour red = new Colour(255, 0, 0);
 		Sphere sphere = new Sphere(new Vector3D(0.0, 0.0, 0.0), 3, 255, 0, 255);
-		Sphere sphere2 = new Sphere(new Vector3D(-500.0, 20.0, 0.0), 50, 0, 255, 255);
+		Sphere sphere2 = new Sphere(new Vector3D(.0, 20.0, 0.0), 2, 0, 255, 255);
 		Plane planeGrass = new Plane(new Vector3D( 0, -5, 0), new Vector3D(0, -1, 0), 76, 153, 0);
-		Plane planeSky = new Plane(new Vector3D(0.0, 0.0, 4), new Vector3D(0, 0, 1), 20, 102, 204);
+		Plane planeSky = new Plane(new Vector3D(0.0, 0.0, 10), new Vector3D(0, 0, 1), 20, 102, 204);
 		//TriangleMesh strip = new TriangleMesh();
-		//Triangle t1 = new Triangle(new Vector3D(0, 0, 0.0), new Vector3D(1, 1, 0), new Vector3D(0,1,1), red);
+		Triangle t1 = new Triangle(new Vector3D(1, 4, 6), new Vector3D(1, -1, 1), new Vector3D(2, 5, -1), red);
+		Triangle t2 = new Triangle(new Vector3D(0, 0, 0), new Vector3D(0, 1, 0), new Vector3D(1, 0, 0), red);
 		
 		Light light = new Light(5, 0, -5);
 		
@@ -46,10 +47,12 @@ public class Main {
 		
 		Scene scene = new Scene();
 		scene.setCamera(cam);
-		scene.addObject(sphere);
+		//scene.addObject(sphere);
 		scene.addObject(planeSky);
 		//scene.addObject(planeGrass);
 		scene.addLight(light);
+		scene.addObject(t1);
+		//scene.addObject(t2);
 		//scene.addObject(sphere2);
 		
 		File output = new File("output4.png");

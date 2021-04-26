@@ -41,27 +41,36 @@ public class Triangle extends Shape{
 		Vector3D xz = z.sub(x);
 		Vector3D normal = xy.crossProduct(xz);
 		
-		//Test if paralell
-		double normalRay = normal.dotProduct(localRay.getDirection());
-		if (Math.abs(normalRay) < 0.000001) {
-			//System.out.println("First false");
+		//System.out.println("xy x:"+xy.getX()+" y:"+xy.getY()+" z:"+xy.getZ());
+		//System.out.println("xz x:"+xz.getX()+" y:"+xz.getY()+" z:"+xz.getZ());
+		
+		//System.out.println("Normal x:"+normal.getX()+" y:"+normal.getY()+" z:"+normal.getZ());
+		
+		//Test if parallel
+		double denom = localRay.getDirection().dotProduct(normal);
+		if (denom == 0) {
+			//System.out.println("first false: t: " + denom);
 			return false;
 		}
 		
 		double d = normal.dotProduct(x);
+		//System.out.println("d: "+d);
 		
 		//calculate t
-		double t = ((normal.dotProduct(localRay.getOrigin())) + d) / normalRay;
+		double t = ((normal.dotProduct(localRay.getOrigin())) + d) / denom;
+		//System.out.println("t: " + t);
 		inter.setT(t);
 		
 		if (t < 0) {
-			//System.out.println("second false: t: " + t);
+			System.out.println("second false: t: " + t);
 			return false; //Triangle is behind
 		}
 		
-		Vector3D point = localRay.getDirection().multi(t).add(localRay.getOrigin());
+		Vector3D point = inter.intersectionPoint();
 		
-		//insideout tests
+		//System.out.println("Point x:"+point.getX()+" y:"+point.getY()+" z:"+point.getZ());
+		
+		//inside out tests
 		Vector3D c;
 		Vector3D edge;
 		Vector3D edgeInt;
@@ -71,8 +80,7 @@ public class Triangle extends Shape{
 		edgeInt = point.sub(x);
 		c = edge.crossProduct(edgeInt);
 		if(normal.dotProduct(c) < 0) {
-			//System.out.println("thrid false");
-
+			System.out.println("third false: t: " + t);
 			return false;
 		}
 		
@@ -81,8 +89,7 @@ public class Triangle extends Shape{
 		edgeInt = point.sub(y);
 		c = edge.crossProduct(edgeInt);
 		if(c.dotProduct(normal) < 0) {
-			//System.out.println("forth false");
-
+			System.out.println("forth false: t: " + t);
 			return false;
 		}
 		
@@ -91,13 +98,11 @@ public class Triangle extends Shape{
 		edgeInt = point.sub(z);
 		c = edge.crossProduct(edgeInt);
 		if(normal.dotProduct(c) < 0) {
-			//System.out.println("fith false");
-
+			System.out.println("fith false: t: " + t);
 			return false;
 		}
 		
 		System.out.println("Hit!");
-		
 		return true;
 	}
 

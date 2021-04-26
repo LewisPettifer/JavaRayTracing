@@ -46,7 +46,7 @@ public class Scene {
 		
 		Ray ray = camera.makeRay(screenCord);
 		Intersection intersection = new Intersection(ray);
-		Colour colour = new Colour();
+		Colour colour = new Colour(0,0,0);
 		double tNear = Double.POSITIVE_INFINITY;
 		Shape closest = new Sphere();
 		
@@ -71,7 +71,7 @@ public class Scene {
 		
 		closest.intersect(intersection);
 		
-		ArrayList<Shape> shadowList = new ArrayList<>();
+		/*ArrayList<Shape> shadowList = new ArrayList<>();
 		
 		for(int i = 0; i < objects.size(); i++) {
 			if (!(closest == objects.get(i))) {
@@ -95,8 +95,8 @@ public class Scene {
 				
 			}
 			
-		}
-		//colour = closest.intersectionColour(intersection, lights.get(0));
+		}*/
+		colour = closest.intersectionColour(intersection, lights.get(0));
 		
 		//System.out.println(" Colour: " + colour.getR() + " " + colour.getG() + " " + colour.getB());
 		
