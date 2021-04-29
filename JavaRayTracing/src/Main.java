@@ -68,7 +68,7 @@ public class Main {
 		//scene.addObject(sphere2);
 		//scene.addObject(tm);
 		
-		File output = new File("output4.png");
+		File output = new File("output6.png");
 		BufferedImage theImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		int a = 255;
 		for(int i = 0; i < width; i++) {

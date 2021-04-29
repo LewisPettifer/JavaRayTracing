@@ -87,10 +87,12 @@ public class Scene {
 		Colour colour = shape.getColor();
 		
 		double lightAngle = lightVector.dotProduct(normal) / (normal.lengthsqrt() * lightVector.lengthsqrt());
+		//double lightIntensity = 4 * Math.PI * lightVector.lengthsqrt();
+		double lightIntensity = 1;
 		
-		int lr = (int) (colour.getR()* light.getIntensity() * Math.max(0.0 , lightAngle));
-		int lg = (int) (colour.getG()* light.getIntensity() * Math.max(0.0 , lightAngle));
-		int lb = (int) (colour.getB()* light.getIntensity() * Math.max(0.0 , lightAngle));
+		int lr = (int) (colour.getR()* light.getIntensity() * Math.max(0.0 , lightAngle) / lightIntensity);
+		int lg = (int) (colour.getG()* light.getIntensity() * Math.max(0.0 , lightAngle) / lightIntensity);
+		int lb = (int) (colour.getB()* light.getIntensity() * Math.max(0.0 , lightAngle) / lightIntensity);
 		
 		return new Colour(lr, lg, lb);
 		
