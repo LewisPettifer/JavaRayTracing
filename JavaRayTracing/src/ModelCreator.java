@@ -23,6 +23,8 @@ public class ModelCreator {
 				while (sc.hasNextDouble()) {
 					//System.out.println("Doubles!");
 					out.add( new Vector3D(sc.nextDouble(), sc.nextDouble(), sc.nextDouble()));
+					sc.nextDouble();
+					sc.nextDouble();
 				}
 
 			sc.close();

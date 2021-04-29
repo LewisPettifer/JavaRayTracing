@@ -71,7 +71,33 @@ public class Scene {
 		
 		closest.intersect(intersection);
 		
-		/*ArrayList<Shape> shadowList = new ArrayList<>();
+		colour = getDiffuse(closest, intersection, lights.get(0));
+		
+		if(isShadow(closest, intersection)) {
+			colour = new Colour(0, 0, 0);
+		}
+		
+		return colour;
+	}
+	
+	public Colour getDiffuse(Shape shape, Intersection intersection, Light light) {
+		
+		Vector3D normal = shape.getNormal(intersection).normalised();
+		Vector3D lightVector = (light.getPosition().sub(intersection.intersectionPoint())).normalised();
+		Colour colour = shape.getColor();
+		
+		double lightAngle = lightVector.dotProduct(normal) / (normal.lengthsqrt() * lightVector.lengthsqrt());
+		
+		int lr = (int) (colour.getR()* light.getIntensity() * Math.max(0.0 , lightAngle));
+		int lg = (int) (colour.getG()* light.getIntensity() * Math.max(0.0 , lightAngle));
+		int lb = (int) (colour.getB()* light.getIntensity() * Math.max(0.0 , lightAngle));
+		
+		return new Colour(lr, lg, lb);
+		
+	}
+	
+	public Boolean isShadow(Shape closest, Intersection intersection) {
+		ArrayList<Shape> shadowList = new ArrayList<>();
 		
 		for(int i = 0; i < objects.size(); i++) {
 			if (!(closest == objects.get(i))) {
@@ -86,20 +112,12 @@ public class Scene {
 		Intersection shadowIntersection = new Intersection(shadowRay);
 		
 		for (int i = 0; i < shadowList.size(); i++) {
-			
-			colour = closest.intersectionColour(intersection, lights.get(0));;
-			
 			if (shadowList.get(i).intersect(shadowIntersection)) {
-				//System.out.print("Shadow!");
-				colour = new Colour(0,0,0);
+				return true;
 				
 			}
 			
-		}*/
-		colour = closest.intersectionColour(intersection, lights.get(0));
-		
-		//System.out.println(" Colour: " + colour.getR() + " " + colour.getG() + " " + colour.getB());
-		
-		return colour;
+		}
+		return false;
 	}
 }

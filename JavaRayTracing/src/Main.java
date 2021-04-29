@@ -18,30 +18,30 @@ public class Main {
 		Vector3D squareroot = new Vector3D(3.0,4.0,0.0);
 		System.out.println(squareroot.length());
 		
-		int width = 200;
-		int height = 200;
+		int width = 1920;
+		int height = 1080;
 		Colour red = new Colour(255, 0, 0);
 		Sphere sphere = new Sphere(new Vector3D(0.0, 0.0, 0.0), 3, 255, 0, 255);
 		Sphere sphere2 = new Sphere(new Vector3D(.0, 20.0, 0.0), 2, 0, 255, 255);
 		Plane planeGrass = new Plane(new Vector3D( 0, -5, 0), new Vector3D(0, -1, 0), 76, 153, 0);
-		Plane planeSky = new Plane(new Vector3D(0.0, 0.0, 10), new Vector3D(0, 0, 1), 20, 102, 204);
+		Plane planeSky = new Plane(new Vector3D(0.0, 0.0, 3), new Vector3D(0, 0, -1), 20, 102, 204);
 		//TriangleMesh strip = new TriangleMesh();
 		Triangle t1 = new Triangle(new Vector3D(1, 4, 6), new Vector3D(1, -1, 1), new Vector3D(2, 5, -1), red);
 		Triangle t2 = new Triangle(new Vector3D(0, 0, 0), new Vector3D(0, 1, 0), new Vector3D(1, 0, 0), red);
 		
-		ModelCreator mc = new ModelCreator("BunnyV.txt", "BunnyT.txt");
+		ModelCreator mc = new ModelCreator("bunny_pts.txt", "bunny_tris.txt");
 		
 		//ArrayList<Vector3D> verts = mc.readVertices();
-		//ArrayList<ArrayList<Integer>> teis = mc.readTriangles(); 
-		TriangleMesh tm = mc.makeTriangles();
+		//ArrayList<ArrayList<Integer>> treis = mc.readTriangles(); 
+		//TriangleMesh tm = mc.makeTriangles();
 		//System.out.println(teis.size());
 		
-		//for(int i = 0; i < verts.size(); i++) {
-		//	System.out.println(verts.get(i));
-		//}
+		/*for(int i = 0; i < treis.size(); i++) {
+			System.out.println(treis.get(i).get(0) + " " + treis.get(i).get(1) + " " + treis.get(i).get(2));
+		}*/
 		
 		
-		Light light = new Light(5, 0, -5);
+		Light light = new Light(5, 5, -5);
 		
 		//strip.addTriangle(t1);
 		
@@ -59,14 +59,14 @@ public class Main {
 		
 		Scene scene = new Scene();
 		scene.setCamera(cam);
-		//scene.addObject(sphere);
+		scene.addObject(sphere);
 		scene.addObject(planeSky);
 		//scene.addObject(planeGrass);
 		scene.addLight(light);
-		scene.addObject(t1);
+		//scene.addObject(t1);
 		//scene.addObject(t2);
 		//scene.addObject(sphere2);
-		scene.addObject(tm);
+		//scene.addObject(tm);
 		
 		File output = new File("output4.png");
 		BufferedImage theImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -74,7 +74,6 @@ public class Main {
 		for(int i = 0; i < width; i++) {
 			for(int j = 0; j < height; j++) {
 				
-				System.out.println("i: " + i + " j: " + j);
 				
 				//Perspective coords
 				Vector3D coord = new Vector3D((2.0*i) / width - 1.0, (-2.0*j) / height + 1.0, 0);

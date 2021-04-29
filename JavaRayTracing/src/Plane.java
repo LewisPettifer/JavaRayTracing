@@ -44,21 +44,6 @@ public class Plane extends Shape{
 		}
 		return false;
 	}
-
-	@Override
-	public Colour intersectionColour(Intersection inter, Light light) {
-		
-		Vector3D lightVector = (inter.intersectionPoint().sub(light.getPosition())).normalised();
-		Vector3D normaledNorm = normal.normalised();
-		
-		double lightAngle =  lightVector.dotProduct(normaledNorm) / (normaledNorm.lengthsqrt() * lightVector.lengthsqrt());
-		
-		int lr = (int) (colour.getR()* light.getIntensity() * Math.max(0.0 , lightAngle));
-		int lg = (int) (colour.getG()* light.getIntensity() * Math.max(0.0 , lightAngle));
-		int lb = (int) (colour.getB()* light.getIntensity() * Math.max(0.0 , lightAngle));
-		
-		return new Colour(lr, lg, lb);
-	}
 	
 	@Override
 	public Vector3D getNormal(Intersection inter) {

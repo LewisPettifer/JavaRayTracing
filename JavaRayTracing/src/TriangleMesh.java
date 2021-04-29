@@ -31,12 +31,6 @@ public class TriangleMesh extends Shape{
 	public int size() {
 		return triangles.size();
 	}
-
-	@Override
-	public Colour intersectionColour(Intersection inter, Light light) {
-		// TODO Auto-generated method stub
-		return new Colour(255, 0, 0);
-	}
 	
 	@Override
 	public Vector3D getNormal(Intersection inter) {
