@@ -64,9 +64,12 @@ public class Vector3D {
 	
 	public double normalise() {
 		double l = this.length();
-		this.x /= l;
-		this.y /= l;
-		this.z /= l;
+		if (l > 0 ) {
+			l = 1 / l;
+		}
+		this.x *= l;
+		this.y *= l;
+		this.z *= l;
 		return l;
 	}
 	
